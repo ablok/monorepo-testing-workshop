@@ -1,35 +1,35 @@
-# name: Playwright Test Automation
+name: Playwright Test Automation
 
-# on: [pull_request]
+on: [pull_request]
 
-# jobs:
-#   vercel-ta:
-#     name: Wait for Vercel (test-automation)
-#     WRITE YOUR CODE HERE
-#     USE: https://github.com/patrickedqvist/wait-for-vercel-preview
+jobs:
+  vercel-ta:
+    name: Wait for Vercel (test-automation)
+    WRITE YOUR CODE HERE
+    USE: https://github.com/patrickedqvist/wait-for-vercel-preview
 
-# playwright-ta:
-#   needs: vercel-ta
-#   runs-on: ubuntu-latest
-#   timeout-minutes: 10
-#   steps:
-#     - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac #v4.0.0
+playwright-ta:
+  needs: vercel-ta
+  runs-on: ubuntu-latest
+  timeout-minutes: 10
+  steps:
+    - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac #v4.0.0
 
-#     - name: Pnpm install
-#       uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 #v2.4.0
-#       with:
-#         run_install: true
+    - name: Pnpm install
+      uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 #v2.4.0
+      with:
+        run_install: true
 
-#     - name: Setup node
-#       uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d #v3.8.1
-#       with:
-#         node-version: 18
-#         cache: "pnpm"
+    - name: Setup node
+      uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d #v3.8.1
+      with:
+        node-version: 18
+        cache: "pnpm"
 
-#     - name: Show preview url
-#       run: echo ${{ needs.vercel-ta.outputs.preview_url }}
+    - name: Show preview url
+      run: echo ${{ needs.vercel-ta.outputs.preview_url }}
 
-#     - name: Run Playwright tests
-#       run: pnpm --filter test-automation run e2e
-#       env:
-#         PLAYWRIGHT_BASE_URL: ${{ needs.vercel-ta.outputs.preview_url }}
+    - name: Run Playwright tests
+      run: pnpm --filter test-automation run e2e
+      env:
+        PLAYWRIGHT_BASE_URL: ${{ needs.vercel-ta.outputs.preview_url }}
