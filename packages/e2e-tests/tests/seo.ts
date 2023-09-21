@@ -5,4 +5,11 @@ export const shouldHavePageTitle = (options: { pageTitle: string }) => {
     await page.goto("");
     await expect(page).toHaveTitle(options.pageTitle);
   });
+}
+
+export const shouldClickOnButtonOnContactPage = () => {
+    return test("should click on the button on the contact page", async({ page }) => {
+        await page.goto("/contact");
+        await page.locator("button").click();
+    });
 };
